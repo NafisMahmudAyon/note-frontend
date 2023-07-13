@@ -34,8 +34,8 @@ const App = () => {
 
   const fetchNotes = () => {
     axios
-      .get("http://note.sqaa-online.com/api/notes")
-      // .get("http://localhost:4000/api/notes")
+      .get("https://note.sqaa-online.com/api/notes")
+      // .get("https://localhost:4000/api/notes")
       .then((response) => {
         // Sort the notes array in descending order based on the created_at timestamp
         const sortedNotes = response.data.sort(
@@ -55,8 +55,8 @@ const App = () => {
     }
 
     axios
-      // .post("http://localhost:4000/api/note", { title, content })
-      .post("http://note.sqaa-online.com/api/note", { title, content })
+      // .post("https://localhost:4000/api/note", { title, content })
+      .post("https://note.sqaa-online.com/api/note", { title, content })
       .then((response) => {
         console.log(response.data);
         fetchNotes();
@@ -81,8 +81,8 @@ const App = () => {
 
     if (selectedNoteId) {
       axios
-        // .put(`http://localhost:4000/api/notes/update/${selectedNoteId}`, {
-        .put(`http://note.sqaa-online.com/api/notes/update/${selectedNoteId}`, {
+        // .put(`https://localhost:4000/api/notes/update/${selectedNoteId}`, {
+        .put(`https://note.sqaa-online.com/api/notes/update/${selectedNoteId}`, {
           title,
           content,
         })
@@ -101,8 +101,8 @@ const App = () => {
 
   const deleteNote = (id) => {
     axios
-      .delete(`http://note.sqaa-online.com/api/notes/delete/${id}`)
-      // .delete(`http://localhost:4000/api/notes/delete/${id}`)
+      .delete(`https://note.sqaa-online.com/api/notes/delete/${id}`)
+      // .delete(`https://localhost:4000/api/notes/delete/${id}`)
       .then((response) => {
         console.log(response.data);
         fetchNotes();
