@@ -4,7 +4,6 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import JoditEditor from "jodit-react";
 import Content from "./content";
-import Register from "./Register";
 
 // import Content from "./content";
 // import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
@@ -14,27 +13,25 @@ const App = () => {
   const [notes, setNotes] = useState([]);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [encodeContent, setEncodeContent] = useState('');
+  const [encodeContent, setEncodeContent] = useState("");
   const editor = useRef(null);
   const [selectedNoteId, setSelectedNoteId] = useState(null);
   const [isFullPage, setIsFullPage] = useState(false);
-// const encodedContent = "";
+  // const encodedContent = "";
   const toggleFullPage = () => {
     setIsFullPage(!isFullPage);
   };
 
   useEffect(() => {
     fetchNotes();
-    
   }, []);
 
-  
-// const handleEncoded = (content) => {
-//   const encodeContent = btoa(content);
-//   console.log(encodeContent);
-//   createNote(content= {encodeContent});
-// }
-  
+  // const handleEncoded = (content) => {
+  //   const encodeContent = btoa(content);
+  //   console.log(encodeContent);
+  //   createNote(content= {encodeContent});
+  // }
+
   const fetchNotes = () => {
     axios
       // .get("http://note.sqaa-online.com/api/notes")
@@ -56,7 +53,6 @@ const App = () => {
       alert("Please add content.");
       return;
     }
-    
 
     axios
       .post("http://localhost:4000/api/note", { title, content })
@@ -66,17 +62,16 @@ const App = () => {
         fetchNotes();
         setTitle("");
         setContent("");
-        
       })
       .catch((error) => {
         console.log(error);
       });
   };
 
-  const encode = btoa("Hello")
-  console.log(encode)
+  const encode = btoa("Hello");
+  console.log(encode);
   const decode = atob(encode);
-  console.log(decode)
+  console.log(decode);
 
   const updateNote = () => {
     if (!content || content.trim() === "") {
@@ -87,7 +82,7 @@ const App = () => {
     if (selectedNoteId) {
       axios
         .put(`http://localhost:4000/api/notes/update/${selectedNoteId}`, {
-        // .put(`http://note.sqaa-online.com/api/notes/update/${selectedNoteId}`, {
+          // .put(`http://note.sqaa-online.com/api/notes/update/${selectedNoteId}`, {
           title,
           content,
         })
@@ -230,10 +225,25 @@ const App = () => {
               {/* <p className="px-3 ">{note.content}</p> */}
             </div>
             <div className=" bg-[#202124] rounded-md absolute border-t border-t-[#5f6368] bottom-0 px-5 flex justify-evenly w-full py-2 ">
-              <button onClick={() => selectNote(note)} className="border border-[#5f6368] px-4 py-1 hover:bg-white hover:border-white hover:text-black rounded-md ">Edit</button>
+              <button
+                onClick={() => selectNote(note)}
+                className="border border-[#5f6368] px-4 py-1 hover:bg-white hover:border-white hover:text-black rounded-md "
+              >
+                Edit
+              </button>
 
-              <button onClick={() => deleteNote(note.id)} className="border border-[#5f6368] px-4 py-1 hover:bg-white hover:border-white hover:text-black rounded-md ">Delete</button>
-              <button onClick={toggleFullPage} className="border border-[#5f6368] px-4 py-1 hover:bg-white hover:border-white hover:text-black rounded-md ">Toggle Full Page</button>
+              <button
+                onClick={() => deleteNote(note.id)}
+                className="border border-[#5f6368] px-4 py-1 hover:bg-white hover:border-white hover:text-black rounded-md "
+              >
+                Delete
+              </button>
+              <button
+                onClick={toggleFullPage}
+                className="border border-[#5f6368] px-4 py-1 hover:bg-white hover:border-white hover:text-black rounded-md "
+              >
+                Toggle Full Page
+              </button>
             </div>
           </div>
         ))}
